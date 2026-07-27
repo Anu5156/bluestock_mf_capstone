@@ -1,0 +1,15 @@
+DAY 1 - DATA QUALITY SUMMARY
+=============================================
+Funds in fund_master            : 40
+Distinct codes in nav_history   : 40
+Funds WITH nav history          : 40
+Funds MISSING from nav_history  : 0
+Codes in nav but NOT in master  : 0
+
+Missing codes : []
+Orphan codes  : []
+
+NOTE (API anomaly): mfapi.in code 125497 is labelled
+HDFC Top 100 in the brief but the API returns SBI Small
+Cap metadata for it. Flagged during live NAV fetch.
+Live NAV fetch (mfapi.in) - scheme code mismatch: 4 of 6 codes in the brief return a different fund than their label (e.g. 125497 'HDFC Top 100' returns 'SBI Small Cap'; 119551 'SBI Bluechip' returns 'Aditya Birla Banking & PSU Debt'). Only 118632 (Nippon) matched. Provided nav_history is internally consistent (0 missing/orphan); the mismatch is between the brief's codes and the public API. Re-verify codes against AMFI's official master before using live NAV.
