@@ -15,7 +15,7 @@ engine = create_engine(f"sqlite:///{DB}")
 
 # 1. Build tables from schema.sql
 print("Creating tables from schema.sql...")
-with open("schema.sql", encoding="utf-8-sig") as f:
+with open("sql/schema.sql", encoding="utf-8-sig") as f:
     schema = f.read()
 with engine.begin() as conn:
     for statement in schema.split(";"):
@@ -74,4 +74,5 @@ with engine.connect() as conn:
         print(f"  {table}: {count} rows")
 
 print(f"\nDone. Database created: {DB}")
+
 

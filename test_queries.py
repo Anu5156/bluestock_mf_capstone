@@ -1,5 +1,5 @@
-﻿import sqlite3
-with open("queries.sql", encoding="utf-8-sig") as f:
+import sqlite3
+with open("sql/queries.sql", encoding="utf-8-sig") as f:
     sql = f.read()
 
 conn = sqlite3.connect("bluestock_mf.db")
@@ -19,3 +19,4 @@ for i, q in enumerate(queries, 1):
     except Exception as e:
         print(f"\n--- Query {i} FAILED: {e}")
 conn.close()
+
