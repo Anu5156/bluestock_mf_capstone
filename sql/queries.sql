@@ -74,3 +74,13 @@ FROM fact_nav n
 JOIN dim_fund f ON n.amfi_code = f.amfi_code
 WHERE n.date = (SELECT MAX(date) FROM fact_nav n2 WHERE n2.amfi_code = n.amfi_code)
 ORDER BY n.nav DESC;
+
+-- 11. WINDOW FUNCTION: rank funds within each category by 3-year return
+SELECT
+    f.category,
+    f.scheme_name,
+    p.return_3yr_pct,
+    RANK() OVER (PARTITION BY f.category ORDER BY p.return_3yr_pct DESC) AS rank_in_category
+FROM fact_performance p
+JOIN dim_fund f ON p.amfi_code = f.amfi_code
+ORDER BY f.category, rank_in_category;
